@@ -1,0 +1,30 @@
+Followings are the steps to create a docker container
+Docker install ==> Docker File Creation ==> Docker Image Creation ==> Docker Containers
+
+Docker File :: Simple text file with instruction to build docker image
+
+Docker Image :: single file with all the dependencies and libraries to run the program
+docker build .
+docker build -t <Image tag> .
+docker build -t <Repository Name>:<Tag Name> .
+docker image ls
+docker rmi <Repository Name>:<Tag Name>
+
+
+Docker Container :: 
+docker run <Image ID>
+docker run <Image Tag>
+docker run -p <Main Machine Port>:<Container Port> <Image ID>
+docker run -p <Main Machine Port>:<Container Port> <Image Tag>
+docker run -d -p <Main Machine Port>:<Container Port> <Image ID>
+docker run -d -p <Main Machine Port>:<Container Port> <Image Tag>
+docker run -d --rm -p <Main Machine Port>:<Container Port> <Image ID>
+docker run -d --rm -p <Main Machine Port>:<Container Port> <Image Tag>
+docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image ID>
+docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image Tag>
+
+docker ps
+docker ps -a
+docker stop <Container Name>
+
+docker rm <Container Name>
