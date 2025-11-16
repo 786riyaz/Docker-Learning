@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  mysql_container:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=amazon
+    ports:
+      - "3306:3306"     # optional: expose to host if you want to connect from host machine
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  mypythonapp:
+    build: .
+    container_name: mypythonapp
+    depends_on:
+      - mysql_container
+    environment:
+      - MYSQL_HOST=mysql_container
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root        # IMPORTANT: must match MYSQL_ROOT_PASSWORD above
+      - MYSQL_DB=amazon
+    volumes:
+      - ./newProducts.txt:/app/newProducts.txt
+      # - ./connect_database.py:/app/connect_database.py  # optional if you want live edits
+    networks:
+      - my-network
+    stdin_open: true
+    tty: true
+    restart: "no"
+
+networks:
+  my-network:
+    driver: bridge
