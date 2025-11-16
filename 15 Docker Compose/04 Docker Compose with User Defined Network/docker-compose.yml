@@ -1,0 +1,33 @@
+# Docker Compose file to set up MySQL database service
+# Services are container or images that run in Docker
+services :
+# MySQL Database Service
+  mysql_container :
+    image : mysql:latest
+    environment :
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=amazon
+    container_name : mysql_container
+    networks :
+      - my-network
+    healthcheck :
+      test : ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval : 10s
+      timeout : 5s
+      retries : 5
+    
+  mypythonapp:
+    build : ./
+    # build : .
+    # build : ./app
+    container_name : mypythonapp
+    networks :
+      - my-network
+    depends_on :
+      mysql_container:
+        condition : service_healthy
+    stdin_open : true
+    tty : true    
+    
+networks :
+  my-network :
