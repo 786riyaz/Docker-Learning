@@ -1,0 +1,16 @@
+Docker In One Shot - Part 1
+https://www.youtube.com/watch?v=31k6AtW-b3Y
+
+00:00 Introduction
+01:20 Docker Introduction
+02:30 Problem Statement
+08:10 Docker Containers
+10:15 Docker Installation and Setup
+11:55 Docker CLI Introduction
+16:45 Docker Images vs Containers
+31:40 Port Mapping
+41:35 Envrioment Variables
+42:40 Containerize Nodejs Server with Docker
+59:30 Publishing Custom Images to hub.docker.com
+01:03:00 Docker Compose
+01:11:40 Outro

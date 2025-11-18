@@ -1,0 +1,38 @@
+Docker Course For Beginners 2025: Basic to Advance Tutorial 🔥 [HINDI] | MPrashant
+https://www.youtube.com/watch?v=OhnTMWmfTBE
+
+00:00 Intro
+01:38 What is a Docker?
+02:32 Why we need Docker?
+05:40 What is container?
+07:39 Architecture of Docker
+11:31 Docker Vs VM
+13:13 Flow of Docker
+14:17 What is DockerFile
+14:57 What is Docker Registry
+17:38 Docker Installation Windows
+21:55 Docker Installation MAC
+24:28 Docker Installation Linux
+30:44 Creating DEMO Project - React Webpp
+38:11 How to create DockerFile?
+46:57 How to build Docker Image?
+49:24 Manage and Running Containers
+01:02:25 Useful Info for Containers
+01:06:56 Managing Images
+01:10:06 Update our project
+01:14:58 Pre-defined Images
+01:21:38 Running container in Interactive mode
+01:26:08 Push Image in DockerHub
+01:35:43 How to Pull Images remotely
+01:38:21 Docker Volume
+01:50:01 Mount Binds in Docker
+02:01:47 Working with APIs
+02:05:58 Container with Local DB
+02:13:35 Project with Multiple Containers
+02:23:28 Docker Network
+02:30:04 What is Docker Compose
+02:38:12 Docker Compose for Multiple containers
+02:52:44 Docker compose with network
+02:59:17 Docker compose with volume
+03:03:45 Docker compose with port binding
+03:05:40 Docker Compose Summary
