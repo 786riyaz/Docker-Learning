@@ -1,3 +1,4 @@
+🧱 Docker Basic Commands Cheat Sheet
 🔹 1. System Information
 | Command               | Description                                                                                         |
 | --------------------- | --------------------------------------------------------------------------------------------------- |
@@ -20,7 +21,7 @@
 | Command                                      | Description                                                  |
 | -------------------------------------------- | ------------------------------------------------------------ |
 | `docker ps`                                  | Lists running containers.                                    |
-| `docker ps -a`                               | Lists all containers (including stopped ones).           |
+| `docker ps -a`                               | Lists all containers (including stopped ones).               |
 | `docker run <image>`                         | Creates and starts a new container from an image.            |
 | `docker run -it <image>`                     | Runs a container in interactive mode (with terminal access). |
 | `docker run -d <image>`                      | Runs a container in detached (background) mode.              |
@@ -42,7 +43,6 @@
 | `docker volume inspect <name>` | Shows details of a specific volume. |
 | `docker volume rm <name>`      | Removes a volume.                   |
 | `docker volume prune`          | Removes unused volumes.             |
-
 
 🌐 5. Docker Networks
 | Command                                           | Description                             |
@@ -70,7 +70,7 @@
 | `docker container prune` | Removes all stopped containers.                                    |
 | `docker image prune`     | Removes unused images.                                             |
 | `docker network prune`   | Removes unused networks.                                           |
-| `docker system prune -a` | Removes all unused containers, images, and networks (⚠️ careful!). |
+| `docker system prune -a` | Removes all unused containers, images, and networks (⚠️ careful!).|
 
 🧩 8. Dockerfile Related
 | Command                                    | Description                                           |
@@ -78,7 +78,6 @@
 | `docker build -t myapp:1.0 .`              | Builds a Docker image from Dockerfile in current dir. |
 | `docker tag myapp:1.0 myrepo/myapp:latest` | Tags an image for pushing to a repository.            |
 | `docker push myrepo/myapp:latest`          | Pushes image to Docker Hub or private registry.       |
-
 
 ⚙️ 9. Docker Login & Registry
 | Command                    | Description                           |

@@ -9,6 +9,8 @@ docker build -t <Image tag> .
 docker build -t <Repository Name>:<Tag Name> .
 docker image ls
 docker rmi <Repository Name>:<Tag Name>
+docker tag <old name>:<tag> <new name>:<tag>
+docker push <remote repo>:<tag>
 
 
 Docker Container :: 
@@ -22,9 +24,50 @@ docker run -d --rm -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -d --rm -p <Main Machine Port>:<Container Port> <Image Tag>
 docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image Tag>
+docker docker run --name mysql_container mysql
+docker run --env MYSQL_ROOT_PASSWORD="root" --name mysql_container mysql
+docker run --env MYSQL_ROOT_PASSWORD="root" --name mysql_container mysql
+docker run --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container mysql
+
+docker exec -it mysql_container bash
+mysql -u root -p
+Enter Password 
+Show Databases
+
+docker inspect mysql_container
+docker start -ai connect_database
 
 docker ps
 docker ps -a
 docker stop <Container Name>
 
 docker rm <Container Name>
+
+docker volume create mydata
+docker volume ls
+docker volume inspect mydata
+docker volume rm mydata
+docker run -it --rm -v myvolume:/username/ username_app
+
+Bind Mount
+docker run -v E:\Docker\Python\server_names.txt:/servername/server_names.txt server_name
+docker run -d \
+  -v /home/riyaz/myfolder:/usr/share/nginx/html \
+  nginx
+
+
+
+docker network create <Network Name>
+docker network ls
+docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container mysql
+docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container --network my-net mysql
+docker build -t connect_database .
+docker run -it --rm --network my-net connect_database
+
+
+.dockerignore
+
+Docker Compose
+Configuration file to manage multiple containers running on same machine
+
+health check in docker compose

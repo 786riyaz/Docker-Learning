@@ -1,0 +1,14 @@
+# Docker Compose file to set up MySQL database service
+# Services are container or images that run in Docker
+services :
+# MySQL Database Service
+  mysql_container :
+    image : mysql:latest
+    container_name : mysql_container
+    environment :
+      MYSQL_ROOT_PASSWORD : root
+      MYSQL_DATABASE : amazon
+    ports :
+      - "3306:3306"
+    volumes :
+      - mysql_data : /var/lib/mysql
