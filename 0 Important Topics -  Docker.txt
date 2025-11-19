@@ -1,6 +1,6 @@
 Docker
 🔹 Core Concepts
-What is Docker and why it’s used
+What is Docker and why it's used
 Images, Containers, and Volumes
 Dockerfile syntax and layers
 COPY vs ADD

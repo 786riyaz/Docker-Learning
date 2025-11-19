@@ -1,0 +1,71 @@
+Here is the **clear and interview-level explanation** of the difference between **RUN** and **CMD** in a Dockerfile:
+
+---
+
+# ✅ **RUN vs CMD in Dockerfile — Simple & Interview Explanation**
+
+## 🔹 **RUN Instruction**
+
+**RUN** is used to **build the image**.
+
+### ✔ What it does:
+
+* Executes commands **during image build time**.
+* Installs packages, downloads dependencies, sets up environment.
+* The result is **baked into the final image**.
+
+### ✔ Example:
+
+```Dockerfile
+RUN apt-get update
+RUN npm install
+RUN pip install flask
+```
+
+### ✔ Interview Answer:
+
+> **RUN creates layers inside the Docker image. It is executed at build time and is used to install software, update packages, or modify the filesystem before the container runs.**
+
+---
+
+## 🔹 **CMD Instruction**
+
+**CMD** is used to **run the default command** when the container starts.
+
+### ✔ What it does:
+
+* Executes **only when the container runs**.
+* Provides the default program to execute.
+* Can be **overridden** by passing a command in `docker run`.
+
+### ✔ Example:
+
+```Dockerfile
+CMD ["node", "app.js"]
+```
+
+### ✔ Interview Answer:
+
+> **CMD defines the default command that runs when a container starts. It does not execute while building the image and can be overridden at runtime.**
+
+---
+
+# 🔥 **Key Differences (Interview-Ready Table)**
+
+| Feature               | RUN                        | CMD                                 |
+| --------------------- | -------------------------- | ----------------------------------- |
+| When executed?        | **During image build**     | **When container starts**           |
+| Creates image layer?  | ✔ Yes                      | ❌ No                                |
+| Purpose               | Install, setup environment | Run default application             |
+| Can it be overridden? | ❌ No                       | ✔ Yes (`docker run <cmd>`)          |
+| Number allowed        | Many RUNs allowed          | Only **one** CMD (last one is used) |
+
+---
+
+# 🧑‍💼 **Perfect 20-second Interview Answer**
+
+> **RUN is used at build time to install dependencies and create image layers. CMD is used at container runtime to specify the default command that should run when the container starts. RUN cannot be overridden, but CMD can be overridden using `docker run`.**
+
+---
+
+If you want, I can also explain **ENTRYPOINT vs CMD** in interview language.

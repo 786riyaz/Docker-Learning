@@ -1,0 +1,64 @@
+✅ EXPOSE vs -p (publish) in Docker
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+1. EXPOSE (Dockerfile instruction)
+Purpose: Documentation + internal communication (not actual port opening)
+
+Meaning:
+`EXPOSE` tells which port the application inside the container will listen on.
+It does NOT open or publish the port to your host machine.
+It is only informational and helps others understand what port the container needs.
+
+Example (Dockerfile):
+EXPOSE 3000
+
+🡆 This means my app will run on port 3000 inside the container
+But you still cannot access it from your laptop unless you publish it with `-p`.
+
+Interview line:
+> "`EXPOSE` is just a metadata instruction in the Dockerfile. It informs Docker and other developers which ports the container intends to use, but it does not actually map any ports to the host."
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+2. -p (publish) in docker run
+Purpose: Actual port binding (host ↔ container)
+
+Meaning:
+`-p` maps a container port to a port on your host machine.
+This is what makes your application accessible from outside.
+
+Example:
+bash
+docker run -p 3000:3000 myapp
+
+🡆 This means:
+Host Port: 3000
+Container Port: 3000
+Anyone can now access the app at : http://localhost:3000
+
+Interview line:
+`-p` actually publishes the port and allows external network traffic to reach the container. Without `-p`, the container port is unreachable from the host.
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+📌 Summary Table (Interview Friendly)
+| Feature                      | EXPOSE                           | -p (publish)        |
+| ---------------------------- | -------------------------------- | ------------------- |
+| Where used?              | Dockerfile                       | docker run command  |
+| Opens port on host?      | ❌ No                             | ✅ Yes               |
+| Purpose                  | Documentation + internal linking | Actual port mapping |
+| Accessible from outside? | ❌ No                             | ✅ Yes               |
+| Required for app access? | ❌ Not enough                     | ✅ Mandatory         |
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+🧠 Simple Real-Life Analogy
+EXPOSE = My room number is 3000
+  (information only)
+
+-p = I opened the door so people can enter room 3000 from outside.
+
+Without opening the door (`-p`), people cannot enter even if they know the room number (`EXPOSE`).
+
+------------------------------------------------------------------------------------------------------------

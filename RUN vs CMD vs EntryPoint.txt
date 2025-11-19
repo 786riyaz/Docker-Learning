@@ -1,0 +1,87 @@
+🔥 1. RUN
+📌 Purpose:
+Used to build the image.
+
+📌 When executed?
+During image build time(while running `docker build`).
+
+📌 What it does:
+Installs software
+Updates packages
+Copies/configures files
+Creates layers inside the image
+
+📌 Example:
+RUN apt-get update && apt-get install -y curl
+RUN npm install
+
+🧑‍💼 Interview Line:
+> RUN executes during the image build and creates layers. It is used for installing dependencies or preparing the environment inside the image.
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+🔥 2. CMD
+📌 Purpose:
+Used to define the default commandthat runs when the container starts.
+
+📌 When executed?
+At container runtime(`docker run`).
+
+📌 What it does:
+Starts your application (Node, Python, Java, etc.)
+Can be overriddenby passing commands while running the container.
+
+📌 Example:
+CMD ["node", "app.js"]
+
+🧑‍💼 Interview Line:
+> CMD sets the default command that runs when the container starts. It does not run during image build. It can be overridden at runtime.
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+🔥 3. ENTRYPOINT
+📌 Purpose:
+Defines the main executablefor the container.
+
+📌 When executed?
+At container runtime, just like CMD.
+
+📌 What it does:
+Makes the container behave like a specific executable.
+Cannot be overridden easily.
+Often used for scripts or fixed commands.
+
+📌 Example:
+ENTRYPOINT ["node"]
+CMD ["app.js"]
+
+Here:
+ENTRYPOINT = fixed part
+CMD = default parameter
+
+If someone runs:
+docker run image another.js
+
+Then container runs:
+node another.js
+
+🧑‍💼 Interview Line:
+> ENTRYPOINT defines the main executable of the container and is harder to override. CMD acts as parameters to ENTRYPOINT. If ENTRYPOINT is not defined, CMD becomes the main command.
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+⭐ Combined Comparison (Interview Table)
+| Feature           | RUN                  | CMD                 | ENTRYPOINT         |
+| ----------------- | -------------------- | ------------------- | ------------------ |
+| Executed at       | Build time           | Runtime             | Runtime            |
+| Creates layer     | ✔ Yes                | ❌ No                | ❌ No               |
+| Purpose           | Prepare image        | Default app command | Main executable    |
+| Can override?     | ❌ No                 | ✔ Yes               | ❌ Hard to override |
+| How many allowed? | Many                 | Only one            | Only one           |
+| Example           | Install dependencies | `node app.js`       | `node`             |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+🎤 Perfect 30-second Interview Answer
+> RUN is executed during image build and is used to install dependencies or configure the environment. CMD and ENTRYPOINT run at container startup. CMD provides the default command and is easily overridden. ENTRYPOINT defines the main executable and is not meant to be overridden. Often both ENTRYPOINT and CMD are used together—ENTRYPOINT as the fixed command and CMD as default arguments.

@@ -1,73 +1,133 @@
 Followings are the steps to create a docker container
 Docker install ==> Docker File Creation ==> Docker Image Creation ==> Docker Containers
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+Docker File :: 
+  Simple text file with instruction to build docker image
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+Docker Image :: 
+  single file with all the dependencies and libraries to run the program
 
-Docker File :: Simple text file with instruction to build docker image
-
-Docker Image :: single file with all the dependencies and libraries to run the program
 docker build .
 docker build -t <Image tag> .
 docker build -t <Repository Name>:<Tag Name> .
 docker image ls
+docker images
 docker rmi <Repository Name>:<Tag Name>
 docker tag <old name>:<tag> <new name>:<tag>
 docker push <remote repo>:<tag>
-
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 Docker Container :: 
 docker run <Image ID>
 docker run <Image Tag>
+docker run -t <Image Name>
+docker run -t node
 docker run -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -p <Main Machine Port>:<Container Port> <Image Tag>
 docker run -d -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -d -p <Main Machine Port>:<Container Port> <Image Tag>
+docker run -p 3000:5000 -e PORT=5000 express-server
+docker run -p 3000:5000 --env PORT=5000 express-server
 docker run -d --rm -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -d --rm -p <Main Machine Port>:<Container Port> <Image Tag>
 docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image ID>
 docker run -d --rm --name "<Container Name>" -p <Main Machine Port>:<Container Port> <Image Tag>
-docker docker run --name mysql_container mysql
-docker run --env MYSQL_ROOT_PASSWORD="root" --name mysql_container mysql
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+MySQL Container Running ====>
+docker run --name mysql_container mysql
 docker run --env MYSQL_ROOT_PASSWORD="root" --name mysql_container mysql
 docker run --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container mysql
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 docker exec -it mysql_container bash
 mysql -u root -p
 Enter Password 
 Show Databases
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 docker inspect mysql_container
 docker start -ai connect_database
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 docker ps
 docker ps -a
-docker stop <Container Name>
-
+docker container ls
+docker container ls -a
 docker rm <Container Name>
 
+docker start <Container Name>
+docker stop <Container Name>
+
+docker exec <Container Name> <Command>
+docker exec ubuntu_container ls
+docker exec -it <Container Name> <Command>
+docker exec -it ubuntu_container bash
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 docker volume create mydata
 docker volume ls
-docker volume inspect mydata
 docker volume rm mydata
+docker volume inspect mydata
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+Bind Mount
 docker run -it --rm -v myvolume:/username/ username_app
 
-Bind Mount
 docker run -v E:\Docker\Python\server_names.txt:/servername/server_names.txt server_name
+
 docker run -d \
   -v /home/riyaz/myfolder:/usr/share/nginx/html \
   nginx
-
-
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 docker network create <Network Name>
 docker network ls
 docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container mysql
 docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container --network my-net mysql
 docker build -t connect_database .
 docker run -it --rm --network my-net connect_database
-
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 .dockerignore
-
-Docker Compose
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+Docker Compose :: 
 Configuration file to manage multiple containers running on same machine
-
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
 health check in docker compose
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================
+Importing and Exporting Docker Image and Container
+✅ 1. Export / Save a Docker IMAGE to a .tar file
+docker save -o myapp.tar myapp:latest
+
+✅ 2. Export a Docker CONTAINER to a .tar file
+docker export my_container -o my_container.tar
+
+📥 3. Save to a specific folder (like Desktop)
+Windows :: docker save -o "C:\Users\YourName\Desktop\myapp.tar" myapp:latest
+Linux :: docker save -o ~/Downloads/myapp.tar myapp:latest
+
+🧪 Verify the exported image (optional)
+docker load -i myapp.tar
+=======================================================================================================================
+=======================================================================================================================
+=======================================================================================================================

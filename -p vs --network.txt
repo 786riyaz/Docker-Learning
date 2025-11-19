@@ -1,0 +1,96 @@
+Here is a clear, simple, interview-friendly explanation of the difference between
+`-p` (port mapping) and `--network host` (host network mode):
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+✅ 1. `-p` (Port Mapping)
+Purpose: Map container ports to host ports.
+
+How it works:
+Your container runs in an isolated network.
+To make it reachable from your host machine, you map ports:
+docker run -p 3000:3000 myapp
+
+This means:
+* Container port: 3000
+* Host port: 3000
+Traffic goes through Docker's virtual network layer.
+
+Key Points:
+✔ Secure (container and host remain isolated)
+✔ You can choose any host port
+✔ Works on Linux, Mac, Windows
+
+Interview line:
+> `-p` publishes a container port to the host by using Docker's NAT and bridge network.
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+✅ 2. `--network host` (Host Network Mode)
+Purpose: Container uses the host's network directly (no isolation).
+
+How it works:
+docker run --network host myapp
+
+This means:
+* No port mapping required
+* Host and container share the same network stack
+* Container uses host IP directly
+* If your app listens on port 3000, it is automatically available on host:3000
+
+Key Points:
+✔ No need for `-p`
+✔ Better performance (no NAT)
+❌ Less secure (no network isolation)
+❌ Only works fully on Linux
+(Windows/Mac use a VM so behavior differs)
+
+Interview line:
+> `--network host` removes Docker's network isolation and makes the container use the host's network directly, which eliminates the need for port mapping.
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+🔥 Example Difference
+Using `-p`
+docker run -p 8080:3000 myapp
+
+Your app: container → 3000
+Browser: localhost:8080
+
+Using `--network host`
+docker run --network host myapp
+
+Your app:
+Container → host → localhost:3000
+(No `-p` needed)
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+🧠 Side-by-Side Comparison
+| Feature               | `-p`                  | `--network host`                                  |
+| --------------------- | --------------------- | ------------------------------------------------- |
+| Network isolation     | ✔ Yes                 | ❌ No                                            |
+| Need to specify port? | ✔ Yes                 | ❌ No                                            |
+| Performance           | Slightly slower (NAT) | Faster                                            |
+| Security              | More secure           | Less secure                                       |
+| Works on              | Linux, Windows, Mac   | Full only on Linux                                |
+| Use case              | Web apps              | High-performance, Dev/Test, DNS, Monitoring tools |
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+🔎 When to use which?
+
+Use `-p` when:
+* Normal web apps
+* Production environments
+* You want isolation
+* You want flexibility for port mapping
+
+Use `--network host` when:
+* High performance networking needed
+* Running monitoring tools (Prometheus, ELK)
+* Running local development tools
+* You trust the container
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------

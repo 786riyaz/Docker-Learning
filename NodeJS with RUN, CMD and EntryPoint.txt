@@ -1,0 +1,147 @@
+Here is a **clear, practical Node.js example** showing how **RUN, CMD, and ENTRYPOINT** work together inside a Dockerfile.
+
+---
+
+# 🚀 **Node.js Example with RUN, CMD, ENTRYPOINT**
+
+Assume your Node project has:
+
+```
+project/
+ ├── package.json
+ ├── server.js
+ └── Dockerfile
+```
+
+Contents of **server.js**:
+
+```js
+console.log("Running:", process.argv);
+console.log("Server starting...");
+```
+
+---
+
+# ✅ **Dockerfile Example Using RUN + CMD + ENTRYPOINT**
+
+```Dockerfile
+FROM node:18
+
+# -------- RUN --------
+# This runs during image build
+# Installs dependencies and creates a layer
+WORKDIR /app
+COPY package.json .
+RUN npm install
+
+# Copy application files
+COPY . .
+
+# -------- ENTRYPOINT --------
+# This is the fixed executable
+ENTRYPOINT ["node"]
+
+# -------- CMD --------
+# These are default arguments to ENTRYPOINT
+CMD ["server.js"]
+```
+
+---
+
+# 🧪 **How It Behaves**
+
+## ✔ When you build the image:
+
+```
+docker build -t node-demo .
+```
+
+### RUN executes:
+
+* `WORKDIR /app`
+* `COPY package.json`
+* `npm install`
+* `COPY . .`
+
+These steps are saved in the image.
+
+---
+
+# 🚀 **Running the Container**
+
+## 📌 Default behaviour:
+
+```
+docker run node-demo
+```
+
+This internally executes:
+
+```
+node server.js
+```
+
+Output:
+
+```
+Running: [ 'node', 'server.js' ]
+Server starting...
+```
+
+---
+
+# 📌 Override only CMD (not ENTRYPOINT)
+
+```
+docker run node-demo another.js
+```
+
+This executes:
+
+```
+node another.js
+```
+
+Output:
+
+```
+Running: [ 'node', 'another.js' ]
+Server starting...
+```
+
+👉 CMD changed
+👉 ENTRYPOINT (node) is still fixed
+
+---
+
+# 📌 Override ENTRYPOINT (force override)
+
+```
+docker run --entrypoint bash node-demo
+```
+
+This runs:
+
+```
+bash server.js
+```
+
+CMD stays same, ENTRYPOINT replaced.
+
+---
+
+# ⭐ **Why this Node.js example is perfect for interviews**
+
+You can confidently say:
+
+> "In Node.js, RUN is used to install dependencies during build, ENTRYPOINT sets node as the main executable, and CMD passes the default script like server.js. CMD can be overridden, ENTRYPOINT stays fixed. So running the container executes `node server.js`, but we can pass another script to run instead."
+
+---
+
+If you want, I can also show:
+✔ version using only CMD
+✔ version using only ENTRYPOINT
+✔ version using no ENTRYPOINT at all
+✔ multi-stage build version for production Node.js
+
+Just tell me!
