@@ -10,3 +10,9 @@ Docker Compose (multi-container setup)
 Networking between containers
 Basic troubleshooting (docker ps, docker logs, docker exec)
 Difference between container and VM
+
+Docker For Open Source Contributors - Part 2
+https://www.youtube.com/watch?v=xPT8mXa-sJg
+
+
+How can we export the docker image in local file or google drive
