@@ -14,3 +14,6 @@ https://www.youtube.com/watch?v=31k6AtW-b3Y
 59:30 Publishing Custom Images to hub.docker.com
 01:03:00 Docker Compose
 01:11:40 Outro
+
+Docker For Open Source Contributors - Part 2 || Piyush Garg
+https://www.youtube.com/watch?v=xPT8mXa-sJg

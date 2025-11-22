@@ -1,0 +1,16 @@
+🔹 Core Concepts
+What is Docker and why it's used
+Images, Containers, and Volumes
+Dockerfile syntax and layers
+COPY vs ADD
+EXPOSE vs -p in docker run
+Environment variables in containers
+Docker Compose (multi-container setup)
+Networking between containers
+Basic troubleshooting (docker ps, docker logs, docker exec)
+Difference between container and VM
+
+docker network
+docker volume
+health check in docker compose
+Multi stage build
