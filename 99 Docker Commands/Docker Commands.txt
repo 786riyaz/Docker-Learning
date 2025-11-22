@@ -1,6 +1,6 @@
 Followings are the steps to create a docker container
 Docker install ==> Docker File Creation ==> Docker Image Creation ==> Docker Containers
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🧱 Docker Basic Commands Cheat Sheet
 🔹 1. System Information
 | Command             | Description                                                                                         |
@@ -12,7 +12,7 @@ Docker install ==> Docker File Creation ==> Docker Image Creation ==> Docker Con
 
 Docker File :: 
   Simple text file with instruction to build docker image
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🐳 2. Docker Images
 single file with all the dependencies and libraries to run the program
 
@@ -30,7 +30,7 @@ docker build -t <Image tag> .
 docker build -t <Repository Name>:<Tag Name> .
 docker rmi <Repository Name>:<Tag Name>
 docker tag <old name>:<tag> <new name>:<tag>
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 📦 3. Docker Containers
 | Command                                    | Description                                                  |
 | ------------------------------------------ | ------------------------------------------------------------ |
@@ -75,7 +75,7 @@ docker exec <Container Name> <Command>
 docker exec ubuntu_container ls
 docker exec -it <Container Name> <Command>
 docker exec -it ubuntu_container bash
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🧭 4. Docker Volumes (Storage)
 | Command                      | Description                         |
 | ---------------------------- | ----------------------------------- |
@@ -86,7 +86,7 @@ docker exec -it ubuntu_container bash
 | docker volume prune          | Removes unused volumes.             |
 
 docker volume create myvolume
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🌐 5. Docker Networks
 | Command                                         | Description                             |
 | ----------------------------------------------- | --------------------------------------- |
@@ -111,7 +111,7 @@ Show Databases
 
 docker inspect mysql_container
 docker start -ai connect_database
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🧰 6. Docker Compose (Multi-Container Setup)
 Configuration file to manage multiple containers running on same machine
 
@@ -127,7 +127,7 @@ Configuration file to manage multiple containers running on same machine
 docker compose -f filename.yaml up
 docker compose -f filename.yaml up -d
 docker compose -f filename.yml down 
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🧹 7. Docker Cleanup Commands
 | Command                | Description                                                        |
 | ---------------------- | ------------------------------------------------------------------ |
@@ -135,14 +135,14 @@ docker compose -f filename.yml down
 | docker image prune     | Removes unused images.                                             |
 | docker network prune   | Removes unused networks.                                           |
 | docker system prune -a | Removes all unused containers, images, and networks (⚠️ careful!). |
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 🧩 8. Dockerfile Related
 | Command                                  | Description                                           |
 | ---------------------------------------- | ----------------------------------------------------- |
 | docker build -t myapp:1.0 .              | Builds a Docker image from Dockerfile in current dir. |
 | docker tag myapp:1.0 myrepo/myapp:latest | Tags an image for pushing to a repository.            |
 | docker push myrepo/myapp:latest          | Pushes image to Docker Hub or private registry.       |
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 ⚙️ 9. Docker Login & Registry
 | Command                  | Description                           |
 | ------------------------ | ------------------------------------- |
@@ -153,7 +153,7 @@ docker compose -f filename.yml down
 | docker pull <repo/image> | Pulls an image from Docker Hub.       |
 
 docker push <remote repo>:<tag>
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 Bind Mount
 docker run -it --rm -v myvolume:/username/ username_app
 
@@ -162,7 +162,7 @@ docker run -v E:\Docker\Python\server_names.txt:/servername/server_names.txt ser
 docker run -d \
   -v /home/riyaz/myfolder:/usr/share/nginx/html \
   nginx
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 Importing and Exporting Docker Image and Container
 ✅ 1. Export / Save a Docker IMAGE to a .tar file
 docker save -o myapp.tar myapp:latest
@@ -176,17 +176,125 @@ Linux :: docker save -o ~/Downloads/myapp.tar myapp:latest
 
 🧪 Verify the exported image (optional)
 docker load -i myapp.tar
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 MySQL Container Running ====>
 docker run --name mysql_container mysql
 docker run --env MYSQL_ROOT_PASSWORD="root" --name mysql_container mysql
 docker run --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="amazon" --name mysql_container mysql
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 .dockerignore
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
 health check in docker compose
-=======================================================================================================================================
-=======================================================================================================================================
-=======================================================================================================================================
-=======================================================================================================================================
-=======================================================================================================================================
+=============================================================================================================================================================================================================================
+IMAGES :
+List all Local images
+docker images
+
+Delete an image
+docker rmi <image_name>
+
+Remove unused images
+docker image prune
+
+Build an image from a Dockerfile
+docker build -t <image_name>:<version> . //version is optional
+docker build -t <image_name>:<version> . -no-cache //build without cache
+==================================================================================================================================================================================
+CONTAINER :
+List all Local containers (running & stopped)
+docker ps -a
+
+List all running containers
+docker ps
+
+Create & run a new container
+docker run <image_name>
+//if image not available locally, it'll be downloaded from DockerHub
+
+Run container in background
+docker run -d <image_name>
+
+Run container with custom name
+docker run --name <container_name> <image_name>
+
+Port Binding in container
+docker run -p<host_port>:<container_port> <image_name>
+
+Set environment variables in a container
+docker run -e <var_name>=<var_value> <container_name> (or <container_id)
+
+Start or Stop an existing container
+docker start|stop <container_name> (or <container_id)
+
+Inspect a running container
+docker inspect <container_name> (or <container_id)
+
+Delete a container
+docker rm <container_name> (or <container_id)
+==================================================================================================================================================================================
+TROUBLESHOOT :
+Fetch logs of a container
+docker logs <container_name> (or <container_id)
+
+Open shell inside running container
+docker exec -it <container_name> /bin/bash
+docker exec -it <container_name> sh
+==================================================================================================================================================================================
+DOCKER HUB :
+Pull an image from DockerHub
+docker pull <image_name>
+
+Publish an image to DockerHub
+docker push <username>/<image_name>
+
+Login into DockerHub
+docker login -u <image_name>
+Or
+docker login
+//also, docker logout to remove credentials
+
+Search for an image on DockerHub
+docker search <image_name>
+==================================================================================================================================================================================
+VOLUMES :
+List all Volumes
+docker volume ls
+
+Create new Named volume
+docker volume create <volume_name>
+
+Delete a Named volume
+docker volume rm <volume_name>
+
+Mount Named volume with running container
+docker run --volume <volume_name>:<mount_path>
+//or using --mount
+docker run --mount type=volume,src=<volume_name>,dest=<mount_path>
+
+Mount Anonymous volume with running container
+docker run --volume <mount_path>
+
+To create a Bind Mount
+docker run --volume <host_path>:<container_path>
+//or using --mount
+docker run --mount type=bind,src=<host_path>,dest=<container_path>
+
+Remove unused local volumes
+docker volume prune //for anonymous volumes
+==================================================================================================================================================================================
+NETWORK :
+List all networks
+docker network ls
+
+Create a network
+docker network create <network_name>
+
+Remove a network
+docker network rm <network_name>
+
+Remove all unused networks
+docker network prune
+=============================================================================================================================================================================================================================
+=============================================================================================================================================================================================================================
+=============================================================================================================================================================================================================================
+=============================================================================================================================================================================================================================
