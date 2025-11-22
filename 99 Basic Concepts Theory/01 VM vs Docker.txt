@@ -15,7 +15,7 @@ Explanation (Interview Style)
 In a Virtual Machine, each application runs on a full Guest Operating System.
 The hypervisor virtualizes the underlying hardware so multiple VMs can run on one server.
 This gives strong isolation but consumes more RAM & CPU.
--------------------------------------------------------------------------------------------------------------
+=================================================================================================================
 ✅ Docker Architecture (Container)
 (Containers share the Host OS Kernel)
 +---------------------------+
@@ -32,15 +32,15 @@ Explanation (Interview Style)
 In Docker, containers dont need a full OS.
 They share the host OS kernel, making them lightweight, faster to start, and more resource-efficient.
 Docker Engine provides isolation using namespaces and cgroups instead of running separate OS instances.
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
 🔥 One-Line Interview Answer
 VMs virtualize hardware → each VM has its own OS.
 Docker virtualizes the OS → containers share the same OS kernel.
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
 ✅ Interview-Ready Explanation: VM vs Docker
 Virtual Machine (VM)
 In a Virtual Machine setup, the hypervisor virtualizes the entire hardware stack, and each VM runs its own complete operating system. Because every VM includes a full OS, it is heavier, slower to boot, and consumes more memory.
@@ -49,9 +49,10 @@ However, VMs offer strong isolation — ideal when running different OS types or
 Docker (Containers)
 Docker uses OS-level virtualization instead of hardware virtualization. Containers share the host OS kernel, so they dont need a full operating system inside them. This makes containers extremely lightweight, fast to start, and efficient in resource usage.
 Docker is ideal for microservices, CI/CD pipelines, and scalable application deployment.
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------
+=================================================================================================================
+=================================================================================================================
+=================================================================================================================
 🔥 One-Line Interview Summary
 VMs virtualize hardware (heavy).
 Containers virtualize the OS (lightweight).
+=================================================================================================================

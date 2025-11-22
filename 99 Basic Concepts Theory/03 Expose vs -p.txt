@@ -60,5 +60,4 @@ EXPOSE = My room number is 3000
 -p = I opened the door so people can enter room 3000 from outside.
 
 Without opening the door (`-p`), people cannot enter even if they know the room number (`EXPOSE`).
-
 ------------------------------------------------------------------------------------------------------------

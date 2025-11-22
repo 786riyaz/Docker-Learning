@@ -1,0 +1,15 @@
+Difference Between COPY and ADD in Dockerfile
+
+In Docker, both COPY and ADD are used to bring files into an image, but they serve different purposes.
+
+COPY is the *simpler and more predictable* instruction.
+It strictly copies files or directories from the build context into the image without performing any additional actions. Because of its simplicity and transparency, COPY is generally the recommended instruction for most use cases.
+
+ADD, on the other hand, is more powerful.
+In addition to copying files, it can also automatically extract tar archives and fetch files from remote URLs. While these capabilities can be useful, they also introduce implicit behavior. For example, a tar file added with ADD will be extracted automatically, which may not always be desirable. Due to this implicit behavior, Docker recommends using ADD only when you specifically need its advanced features.
+
+In summary:
+* Use COPY for standard file transfers because it is cleaner, more secure, and easier to maintain.
+* Use ADD only when you require automatic tar extraction or URL-based file retrieval.
+
+This demonstrates to the interviewer that you understand not just the difference, but also the *best practices* behind choosing one over the other.

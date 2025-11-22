@@ -23,7 +23,7 @@ RUN npm install
 -------------------------------------------------------------------------
 🔥 2. CMD
 📌 Purpose:
-Used to define the default commandthat runs when the container starts.
+Used to define the default command that runs when the container starts.
 
 📌 When executed?
 At container runtime(`docker run`).
@@ -42,7 +42,7 @@ CMD ["node", "app.js"]
 -------------------------------------------------------------------------
 🔥 3. ENTRYPOINT
 📌 Purpose:
-Defines the main executablefor the container.
+Defines the main executable for the container.
 
 📌 When executed?
 At container runtime, just like CMD.
