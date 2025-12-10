@@ -75,9 +75,9 @@ node another.js
 | Feature           | RUN                  | CMD                 | ENTRYPOINT         |
 | ----------------- | -------------------- | ------------------- | ------------------ |
 | Executed at       | Build time           | Runtime             | Runtime            |
-| Creates layer     | ✔ Yes                | ❌ No                | ❌ No               |
+| Creates layer     | ✔ Yes                | ❌ No              | ❌ No              |
 | Purpose           | Prepare image        | Default app command | Main executable    |
-| Can override?     | ❌ No                 | ✔ Yes               | ❌ Hard to override |
+| Can override?     | ❌ No                | ✔ Yes              | ❌ Hard to override|
 | How many allowed? | Many                 | Only one            | Only one           |
 | Example           | Install dependencies | `node app.js`       | `node`             |
 -------------------------------------------------------------------------
